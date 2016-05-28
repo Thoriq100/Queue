@@ -1,0 +1,158 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+using namespace std;
+
+typedef struct
+{
+	int ukuran;
+ int data[100];
+   int f;
+   int r;
+}queue;
+queue antrian;
+
+void kapasitas(){
+	cout<<"Masukan batas queue :";
+	cin>>antrian.ukuran;
+	antrian.data[antrian.ukuran];
+	
+}
+
+void create()
+{
+ antrian.f=antrian.r=-1;
+}
+
+int IsEmpty()
+{
+ if(antrian.r==-1)
+   return 1;
+   else
+   return 0;
+}
+
+int IsFull()
+{
+ if(antrian.r==antrian.ukuran-1)
+   return 1;
+   else
+   return 0;
+}
+
+void Enqueue(int data)
+{
+ if(IsEmpty()==1)
+   {
+    antrian.f=antrian.r=0;
+      antrian.data[antrian.r]=data;
+      cout<<"Data "<<antrian.data[antrian.r]<<" Berhasil Masuk !!!";
+   }
+   else if(IsFull()==0)
+   {
+    antrian.r++;
+      antrian.data[antrian.r]=data;
+      cout<<"Data "<<antrian.data[antrian.r]<<"Berhasil Masuk !!!";
+   }
+   else if(IsFull()==1)
+   {
+    cout<<"kapasitas Penuh !!"<<endl;
+      cout<<data<<"tidak Bisa Masuk !!!";
+   }
+}
+void Dequeue()
+{
+ int i;
+   int e = antrian.data[antrian.f];
+   if(antrian.r==-1)
+   {
+    cout<<"Data Kosong"<<endl;
+   }
+   else
+   {
+    for(i=antrian.f;i<antrian.r-1;i++)
+      {
+       antrian.data[i]=antrian.data[i+1];
+      }
+      antrian.r--;
+      cout<<"Data yang keluar lebih dulu = "<<e<<endl;
+   }
+}
+void clear()
+{
+ antrian.f=antrian.r=-1;
+   cout<<"Duh Lega, Ruangan jadi ga sumpek... "<<endl;
+   cout<<"Data Clear";
+}
+void tampil()
+{
+ if(IsEmpty()==0)
+   {
+    cout<<"Data Dalam Antrian"<<endl;
+      cout<<"=====================================";
+      cout<<endl;
+      for(int i=antrian.f;i<=antrian.r;i++)
+      {
+       cout<<"| " <<antrian.data[i]<<" |";
+      }
+   }
+   else
+   {
+    cout<<"Data kosong";
+   }
+}
+main()
+{
+ int pil;
+   int data;
+   kapasitas();
+   create();
+   do
+   {
+	system("cls");
+      cout << endl;
+      cout<<"Implementasi Antrian dengan Struct"<<endl;
+      cout<<"==========================================";
+      cout<<endl;
+      cout<<"1. Enqueue"<<endl;
+      cout<<"2. Dqueue "<<endl;
+      cout<<"3. Print "<<endl;
+      cout<<"4. Clear "<<endl;
+      cout<<"5. Exit "<<endl;
+      cout<<"Masukkan pilihan anda : ";
+      cin>>pil;
+      switch(pil)
+      {
+       case 1:
+         {
+          cout<<endl;
+            cout<<"Data = ";
+            cin>>data;
+            Enqueue(data);
+            break;
+         }
+         case 2:
+         {
+          cout<<endl;
+            Dequeue();
+            break;
+         }
+         case 3:
+         {
+          cout<<endl;
+            tampil();
+            break;
+         }
+         case 4:
+         {
+          cout<<endl;
+            clear();
+            break;
+         }
+      }
+      getch();
+   }
+   while(pil!=5);
+}

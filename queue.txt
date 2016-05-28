@@ -1,0 +1,50 @@
+PENGERTIAN QUEUE (ANTRIAN)
+
+Definisi Queue
+Jika diartikan secara harafiah, queue berarti antrian, queue merupakan salah satu contoh aplikasi dari pembuatan double linked list yang cukup sering kita temui dalam kehiduypan sehari-hari, misalnya saat Anda mengantri di loket untuk membeli tiket. Istilah yang cukup sering dipakai seseorang masuk dalam sebuah antrian adalah enqueue. Dalam suatu antrian, yang dating terlebih dahulu akan dilayani lebih dahulu. Istilah yang sering dipakai bila seseorang keluar dari antrian adalah dequeue. Walaupun berbeda implementasi, struktur data queue setidaknya harus memiliki operasi-operasi sebagai berikut :
+EnQueue Memasukkan data ke dalam antrian
+DeQueue Mengeluarkan data terdepan dari antrian
+Clear Menghapus seluruh antrian
+IsEmpty Memeriksa apakah antrian kosong
+IsFull Memeriksa apakah antrian penuh
+
+Implementasi Queue dengan Linear Array
+Linear Array
+Linear array adalah suatu array yang dibuat seakan-akan merupakan suatu garis lurus dengan satu pintu masuk dan satu pintu keluar. Berikut ini diberikan deklarasi kelas Queue Linear sebagai implementasi dari Queue menggunakan linear array. Dalam prakteknya, anda dapat menggantinya sesuai dengan kebutuhan Anda. Data diakses dengan field data, sedangkan indeks item pertama dan terakhir disimpan dalam field Head dan Tail. Konstruktor akan menginisialisasikan nilai Head dan Tail dengan -1 untuk menunjukkan bahwa antrian masih kosong dan mengalokasikan data sebanyak MAX_QUEUE yang ditunjuk oleh Data. Destruktor akan mengosongkan antrian kembali dan mendealokasikan memori yang digunakan oleh antrian. Operasi-Operasi Queue dengan Linear Array
+• IsEmpty
+Fungsi IsEmpty berguna untuk mengecek apakah queue masih kosong atau sudah berisi data. hal ini dilakukan dengan mengecek apakah tail bernilai -1 atau tidak. Nilai -1 menandakan bahwa queue masih kosong.
+• IsFull
+Fungsi IsFull berguna untuk mengecek apakah queue sudah penuh atau masih bias menampung data dengan cara mengecek apakah nilai tail sudah sama dengan jumlah maksimal queue. Jika nilai keduanya sama, berarti queue sudah penuh.
+• EnQueue
+Fungsi EnQueue berguna untuk memasukkan sebuah elemen dalam queue.
+• DeQueue
+Fungsi DeQueue berguna untuk mengambil sebuah elemen dari queue. Operasi ini sering disebut juga serve. Hal ini dilakukan dengan cara memindahkan sejauh satu langkah ke posisi di depannya sehingga otomatis elemen yang paling depan akan tertimpa dengan elemen yang terletak di belakangnya.
+• Clear
+Fungsi Clear berguna untuk menghapus semua lemen dalam queue dengan jalan mengeluarkan semua elemen tersebut satu per satu hingga queue kosong dengan memanfaatkan fungsi DEQueue.
+
+Implementasi Queue dengan Circular Array
+Circular Array
+Circular array adalah suatu array yang dibuat seakan-akan merupakan sebuah
+lingkaran dengan titik awal (head) dan titik akhir (tail) saling bersebelahan jika array tersebut masih kosong. Posisi head dan tail pada gambar diatas adalah bebas asalkan saling bersebelahan. Berikut ini diberikan deklarasi kelas Queue Circular sebagai implementasi circular array. Dalam prakteknya, Anda dapat menggantikanny sesuai dengan kebutuhan Anda. Data diakses dengan field data, sedangkan indeks itemn pertama dan terakhir disimpan dalam field Head dan Tail. Konstruktor akan menginisialisasi nilai Head dan Tail dengan 0 dan MAX-QUEUE-1 untuk menunjukkan bahwa antrian masih kosong dan mengalokasikan data sebanyak MAX-QUEUE yang ditunjuk oleh Data. destruktor akan mengosongkan antrian kembali dan mendealokasikan memori yang digunakan oleh
+antrian. Operasi-Operasi Queue dengan Circular Array :
+• IsEmpty
+Fungsi IsEmpty berguna untuk mengecek apakah Queue masih kosong atau sudah berisi. Hal ini dilakukan dengan mengecek apakah tail masih terletak bersebelahan dengan head dan tail lebih besar dari head atau tidak. Jika benar, maka queue masih kosong.
+• IsFull
+Fungsi IsFull berguna untuk mengecek apakah queue sudah penuh atau masih bias menampung data dengan cara mengecek apakah tempat yang masih kosong tinggal satu atau tidak (untuk membedakan dengan empty dimana semua tempat kosong). Jika benar berarti queue penuh.
+• EnQueue
+Fungsi EnQueue berguna untuk memasukkan sebuah elemen ke dalam queue tail dan head mula-mula bernilai nol (0).
+• DeQueue
+DeQueue berguna untuk mengambil sebuah elemen dari queue. Hal ini dilakukan dengan cara memindahkan posisi head satu langkah ke belakang.
+
+Implementasi Queue dengan Double Linked List
+Selain menggunakan array, queue juga dapat dibuat dengan linked list. Metode linked list yang digunakan adalah double linked list. Operasi-operasi Queue dengan Double Linked List : 
+• IsEmpty
+Fungsi IsEmpty berguna untuk mengecek apakah queue masih kosong atau sudah berisi data. Hal ini dilakukan dengan mengecek apakah head masih menunjukkan pada Null atau tidak. Jika benar berarti queue masih kosong.
+
+
+• IsFull
+Fungsi IsFull berguna untuk mengecek apakah queue sudah penuh atau masih bias menampung data dengan cara mengecek apakah Jumlah Queue sudah sama dengan MAX_QUEUE atau belum. Jika benar maka queue sudah penuh.
+• EnQueue
+Fungsi EnQueue berguna untuk memasukkan sebuah elemen ke dalam queue (head dan tail mula-mula meunjukkan ke NULL).
+• DeQueue
+Procedure DeQueue berguna untuk mengambil sebuah elemen dari queue. Hal ini dilakukan dengan cara menghapus satu simpul yang terletak paling depan (head).

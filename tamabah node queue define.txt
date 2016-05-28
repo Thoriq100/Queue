@@ -1,0 +1,25 @@
+struct Node
+{
+   int item;
+   Node* next;
+};
+
+class Queue
+{
+public:
+    // Extra code here
+    void operator = (const Queue &original);
+protected:
+    Node *front, *end;
+};
+
+void Queue::operator=(const Queue &original)
+{
+    //THIS IS WHERE IM GOING WRONG
+    while(original.front->next != NULL) {
+        front->item = original.front->item;
+        front->next = new Node;
+        front = front->next;
+        original.front = original.front->next;
+    }
+}

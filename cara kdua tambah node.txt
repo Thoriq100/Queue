@@ -1,0 +1,11 @@
+void Queue::operator=(const Queue &original)
+{
+    Node* tmp = original.front;
+    //THIS IS WHERE IM GOING WRONG
+    while(tmp->next != NULL) {
+        front->item = tmp->item;
+        front->next = new Node;
+        front = front->next;
+        tmp = tmp->next;
+    }
+}

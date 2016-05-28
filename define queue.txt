@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdbool.h> // agar dapat menggunakan tipe data boolean
+
+// mendefinisikan kapasitas queue hanya memuat 4 string
+#define CAPACITY 4
+
+typedef struct
+{
+    // menandakan dimana letak bagian depan queue
+    int head;
+
+    // string pada queue sebanyak CAPACITY=4
+    char* string[CAPACITY];
+
+    // menandakan berapa banyak string pada queue
+    int size;
+} queue;
+
+// deklarasi variabel dengan tipe data queue sebagai variabel global
+queue q;
+
+bool enqueue(char str[])
+{
+    // cek jika jumlah string pada queue sama dengan CAPACITY
+    if (q.size == CAPACITY)
+    {
+        // enqueue gagal jika queue penuh
+        return false;
+    }
+    // taruh string pada bagian depan queue
+    q.string[(q.size + q.head) % CAPACITY] = str;
+
+    // jumlah string pada queue bertambah jika enqueue berhasil
+    q.size++;
+
+    // enqueue berhasil
+    return true;
+}
+
+char* dequeue()
+{
+    // cek jika terdapat string pada queue
+    if (q.size > 0)
+    {
+        // jika ada, simpan elemen bagian depan queue ke variabel first
+        char* first = q.string[q.head];
+
+        // elemen dibelakang first menjadi elemen bagian depan
+        q.head = (q.head + 1) % CAPACITY;
+
+        // kurangi jumlah string pada queue
+        q.size--;
+
+        // nilai kembalian berupa elemen bagian depan queue
+        return first;
+    }
+    return NULL;
+}
+
+int main()
+{
+    // inisialisasi size dan head sebesar 0
+    q.size = 0;
+    q.head = 0;
+    char* data;
+    int pilihan;
+    while (true)
+    {
+        printf("1. Enqueue\n2. Dequeue\n3. Display Size and Head\n4. Quit\nJawab: ");
+        scanf("%d", &pilihan);
+        switch (pilihan)
+        {
+            case 1:
+               printf("Insert string: ");
+               scanf("%s", &data);
+               printf("The enqueue %s successful\n", (enqueue(data)) ? "was" : "was not");
+               break;
+            case 2: dequeue(); break;
+            case 3: printf("Size = %d\nHead = %d\n", q.size, q.head); break;
+            default: return 0; break;
+        }
+    }
+    return 0;
+}

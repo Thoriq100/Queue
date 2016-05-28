@@ -1,0 +1,124 @@
+#include 
+#include 
+
+typedef struct
+{
+     char data[20];
+    int head;
+    int tail;
+}Data;
+Data queue;
+
+void init()
+{
+    queue.head = queue.tail = -1;
+}
+
+int kosong()
+{                                       
+    if(queue.head==-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int penuh()
+{
+    if(queue.tail==20-1)
+    {
+        return 1;
+    }
+    else
+    {   return 0;
+    }
+}
+
+void input()
+{
+    char data;
+    cout <<"Masukkan Data "; cin >>data;
+    if(penuh()==0)
+    {
+        queue.tail++;
+        queue.data[queue.tail]=data;
+        cout<<"TERSIMPAN"<    }
+    else
+    {
+        cout <<"DATA SUDAH PENUH";
+    }
+}
+
+int keluar()
+{
+    int i;
+    int x=queue.data[queue.head+1];
+    for(i=queue.head;i    {
+        queue.data[i]=queue.data[i+1];
+    }
+    queue.tail--;
+    cout <<" DATA DI KELUARKAN"<    return x;
+}
+
+void hapus()
+{
+    init();
+    cout <<"Data telah dikosongkan";
+}
+
+void tampil()
+{
+    if(kosong()==0)
+    {
+     for(int i=queue.head+1;i<=queue.tail;i++)
+        {
+            cout <        }   cout<<"\n"<<"Head : "<         cout<<"\n"<<"Tail : "<    }
+    else
+    {
+        cout <<"DATA MASIH KOSONG";
+    }
+}
+
+main()
+{
+    int pil;
+cout<<"MBF"<cout<<"Linear Data"<    do
+    {
+        cout<<"\n\n1. Masukkan Data"<        cout<<"2. Keluarkan Data"<        cout<<"3. Kosongkan Data"<        cout<<"4. Tampilkan Data"<        cout<<"5. EXIT"<        cout<<"Silahkan Masukan Pilihan Anda :";cin>>pil;
+        cout<        switch (pil)
+        {
+            case 1:
+            {
+
+
+                input();
+                break;
+            }
+            case 2:
+            {
+                keluar();
+                break;
+            }
+            case 3:
+            {
+                hapus();
+                break;
+            }
+            case 4:
+            {
+                tampil();
+                break;
+            }
+            case 5:
+            {
+            cout<            }
+            default :
+            {
+                     cout<<"\t\tTidak ada dalam pilihan"<            }
+        }
+    }
+    while(pil>=1 && pil<= 4);
+- See more at: http://aina-tunk.blogspot.co.id/2012/12/contoh-program-c-queue.html#sthash.JOVtgIbM.dpuf

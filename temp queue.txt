@@ -1,0 +1,176 @@
+  #include <conio.h>
+#include <stdio.h>
+#include <iostream.h>
+#include <iomanip.h>
+#define max 6
+
+typedef struct
+{
+ int head;
+   int tail;
+}antrian;
+
+antrian ue;
+
+typedef struct
+{
+   char *nm[max], *almt[max], *tgl[max];
+} variabel;
+
+variabel qu;
+
+
+void creat()
+{
+ ue.head=ue.tail=-1;
+}
+
+empty()
+{
+ if(ue.tail==-1)
+      return 1;
+   else
+      return 0;
+}
+
+full()
+{
+ if(ue.tail==max-1)
+      return 1;
+   else
+      return 0;
+}
+
+void en(char *a, char *b, char *c)
+{
+ if(empty()==1)
+   {
+      ue.head=ue.tail=0;
+      qu.nm[ue.tail]=a;
+      qu.almt[ue.tail]=b;
+      qu.tgl[ue.tail]=c;
+   }
+
+   else if(full()==0)
+   {
+    ue.tail++;
+      qu.nm[ue.tail]=a;
+      qu.almt[ue.tail]=b;
+      qu.tgl[ue.tail]=c;
+   }
+
+   else if(full()==1)
+   {
+    cout<<"QUEUE PENUH";
+   }
+}
+
+de()
+{
+ if(empty()==0)
+ {
+  int i;
+      char *aa=qu.nm[ue.tail];
+      char *bb=qu.almt[ue.tail];
+      char *cc=qu.tgl[ue.tail];
+
+       for(i=ue.head; 1<=ue.tail-1; i++)
+    {
+       qu.nm[i]=qu.nm[i+1];
+         qu.almt[i]=qu.almt[i+1];
+     qu.tgl[i]=qu.tgl[i+1];
+    }
+
+    ue.tail--;
+      cout<<"DATA YANG DIHAPUS ADALAH : \n";
+
+      cout<<"NAMA   : "<<aa<<endl;
+      cout<<"ALAMAT : "<<bb<<endl;
+      cout<<"TANGGAL: "<<cc<<endl;
+   }
+
+
+   else if(empty()==1)
+   { cout<<"DATA EROR......QUEUE KOSONG"; }
+
+   return 1;
+}
+
+void clear()
+{
+   ue.head=ue.tail=-1;
+   cout<<"QUEUE CLEAR";
+}
+
+void view()
+{
+ if(empty()==0)
+   {
+  cout<<"NO NAMA       ALAMAT            TANGGAL\n";
+
+   for(int i=ue.head; i<=ue.tail; i++)
+   {
+     cout<<setiosflags(ios::left)<<setw(3)<<i;
+      cout<<setiosflags(ios::left)<<setw(11)<<qu.nm[i];
+      cout<<setiosflags(ios::left)<<setw(18)<<qu.almt[i];
+      cout<<setiosflags(ios::left)<<setw(9)<<qu.tgl[i]<<endl;
+   }
+   }
+   else
+   { cout<<"NO NAMA       ALAMAT            TANGGAL\n"; }
+}
+
+main()
+{
+
+ int menu;
+   char nm[20], almt[40], tgl[20];
+
+creat();
+
+do{
+
+clrscr();
+
+cout<<"===========================\n";
+cout<<"    MENU PROGRAM QUEUE\n";
+cout<<"===========================\n";
+cout<<"1.ENQUEUE\n";
+cout<<"2.DEQUEUE\n";
+cout<<"3.CLEAR\n";
+cout<<"4.VIEW\n";
+cout<<"5.EXIT\n";
+cout<<"===========================\n";
+cout<<"PILIH MENU : ";       cin>>menu;
+
+if(menu==1)
+{     cout<<"MASUKAN NAMA   : ";    gets(nm);
+     cout<<"MASUKAN ALAMAT : ";    gets(almt);
+         cout<<"MASUKAN TANGGAL: ";      gets(tgl);
+     en(nm, almt, tgl);
+}
+
+else if(menu==2)
+{
+   de();
+}
+
+else if(menu==3)
+{
+    clear();
+}
+
+else if(menu==4)
+{
+    view();
+}
+
+else if(menu==5)
+{
+    cout<<"exiiitttt......";
+}
+getch();
+
+}while(menu!=5);
+
+}

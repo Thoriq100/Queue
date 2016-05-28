@@ -1,0 +1,36 @@
+//Add ab item the Queue
+void addAtBack (int val)
+{
+
+ int t;
+ ListElem *item;//new element to be Added
+ item=(ListElem *)malloc(sizeof(ListElem)); //allocate space
+ if(!item) {cout<<"Memory problem..."; exit(100);}
+
+ item->data=val;
+
+//Add a new item to the empty Queue
+
+ if(pfirst==NULL && plast==NULL){
+//The first and last item point to the new item when they are null--empty Queue.
+  item->next=NULL;
+  pfirst=item;
+  plast=item;
+
+  cout<<"Added:"<<item->data<<endl;
+
+}
+
+//Add a new item at the end of the Queue
+ else 
+ {
+
+  item->next = NULL; //The next link of the item is null.
+  plast->next = item; 
+  plast =item;
+  cout<<"Added:"<<item->data<<endl;
+ }
+
+
+
+}

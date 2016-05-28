@@ -1,0 +1,162 @@
+#include<iostream.h> //file header c++
+#include <stdio.h>//file header c
+#include <conio.h>//file header untuk menampilkan output
+typedef struct //deklarasi type struct
+{
+int data [6];
+int kepala;
+int ekor;
+//variabel bertipe integer
+}
+Queue;
+Queue antrian;
+void Create()
+// membuat queue baru
+{
+antrian.kepala=antrian.ekor=-1;
+//deklarasi bahwa antrian.kepala sama dengan antrian.ekor yaitu -1
+}
+
+int kosong()
+{
+if(antrian.ekor==-1)
+return 1;
+else
+return 0;
+//kondisi jika antrian.ekor sama dengan -1 maka kembali ke 1 jika yang lainnya maka kembali ke 0
+}
+int penuh()
+{
+if(antrian.ekor==6-1)
+return 1;
+else
+return 0;
+//kondisi dimana jika antrian ekor sama dengan 6-1 maka kembali ke 1 dan jika lainnya maka kembali ke 0
+}
+void Enqueue(int data) //membuat masukan queue
+{
+            if(kosong()==1) //kondisi jika kosong () sama dengan 1 maka antrian.kepala= antrian.ekor=0
+            {
+                        antrian.kepala=antrian.ekor=0;
+                        antrian.data[antrian.ekor]=data;
+
+                        void Tampil(); //membuat fungsi tampil
+                        {
+                                    if(kosong()==0)
+                                    /*kondisi dimana jika kosong() sama dengan 0 maka untuk integer i = antrian.kepala; i lebih kecil sama dengan antrian ekor; kemudian melakukan penambahan pada i*/
+
+                                    {
+                                                for(int i=antrian.kepala;i<=antrian.ekor;i++)
+                                                {
+                                                            cout<<antrian.data[i];
+                                                }
+                                    }
+                                    else
+                                                cout<<"Data Anda Kosong !\n";
+                                                //kondisi jika laiinya maka akan tampil seperti diatas.
+                        }
+            }
+            else
+            if(penuh()==0)
+            //kodisi laiinya jika penuh () sama dengan 0 maka antrian.ekor ditambah 1
+            {
+                        antrian.ekor++;
+                        antrian.data[antrian.ekor]=data;
+
+            }
+}
+int Dequeue() //variabel mengeluarkan antrian
+{
+            int i;
+            int e=antrian.data[antrian.kepala];
+
+            for(i=antrian.kepala;i<=antrian.ekor-1;i++)
+            /*kondisi untuk i=antrian.kepala; i lebih kecil sama dengan antrian.ekor dikurangi 1; i ditambah 1*/
+            {
+                        antrian.data[i]=antrian.data[i+1];
+                        //antrian data[i] sama dengan antrian data i+1
+            }
+            antrian.ekor--;
+            //antrian.ekor dikurangi 1
+            return e;
+            //kembali ke e
+}
+void hancur()
+//membuat fungsi menghancurkan queue
+{
+antrian.kepala=antrian.ekor=-1;
+cout<<"Data sudah dihancurkan";
+}
+
+void Tampil()
+//membuat fungsi tampil
+{
+            if (kosong()==0)
+            {
+                        for (int i=antrian.kepala;i<=antrian.ekor; i++)
+                        {
+                                    cout<<antrian.data[i]<<" ";
+                        }
+            }
+            else
+            {
+                        cout<<"Data Anda Kosong\n";
+            }
+}
+
+void main()
+{
+int pil;
+int data;
+Create();
+
+ do
+/*kondisi dimana program akan terus berjalan
+ jika kondisi bernilai true dan program akan berhenti jika kondisi bernilai false.*/
+{
+clrscr();//deklarasi untuk menghapus layar
+printf ("\n======== MENU ========\n");
+printf ("  1. Enqueue\n");
+printf ("  2. Dequeue\n");
+printf ("  3. Tampil\n");
+printf ("  4. Destroy\n");
+printf ("  5. Keluar\n");
+printf ("======================\n");
+printf ("Masukkan Pilihan Anda : ");
+cin>>pil; //inputan variabel pil bertipe integer
+
+switch(pil)
+//membuat switch pada plihan
+{
+            case 1:
+                        cout<<"Masukan Data : ";
+                        cin>>data;
+                        Enqueue(data);
+                        break;
+                        //jika memilih 1 maka akan memasukan data antrian
+
+            case 2:
+                        cout<<"Elemen yang keluar : "<< Dequeue();
+                        break;
+                        /*jika memilih 2 maka akan menuju ke fungsi dequeue
+                        atau dengan kata lain akan mengeluarkan 1 data pada elemen queue*/
+
+            case 3:
+                        Tampil();
+                        /* jika memilih 3 maka akan menuju fungsi tampil,
+                        maka data pada queue akan ditampilkan oleh program*/
+                        break;
+
+            case 4:
+                        hancur();
+                        // jika memilih 4 maka semua data pada queue akan dihancurkan.
+                        break;
+            case 5:
+                        clrscr();
+                        // jika memlih 5 maka akan menghapus layar dan keluar dari program.
+                        break;
+}
+getch();
+} while(pil!=5);
+//akan melakukan operasi selama pilihannya tidak sama dengan 5
+}

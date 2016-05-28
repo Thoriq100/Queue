@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<iostream.h>
+#include<conio.h>
+#define QSIZE 5
+int front=0,rear=-1,q[QSIZE];
+void insert(int x)
+{
+rear=(rear+1)%QSIZE;
+q[rear]=x;
+}
+int del()
+{
+int t=0;
+if(rear<=-1)
+cout<<“\nQueue is empty.\n\n”;
+else
+{
+t=q[front];
+if(front!=rear)
+front=(front+1)%QSIZE;
+else
+{
+front=0;
+rear=-1;
+}
+}
+return t;
+}
+void display()
+{
+int i;
+if(rear<=-1)
+cout<<“\nQueue is empty.\n\n”;
+else
+{
+cout<<“\nThe queue is\n”;
+for(i=front;i!=rear;i=(i+1)%QSIZE)
+cout<<q[i]<<” \t”;
+cout<<q[i]<<” \n”;
+}
+}
+void destroy()
+{
+int i=0;
+if(rear<=-1)
+cout<<“\nQueue is empty.\n\n”;
+else
+for(i=front;i<=rear;i=(front+1)%QSIZE)
+del();
+if(i!=0)
+cout<<“\nQueue is destroy.\n\n”;
+}
+void main()
+{
+int ch,in,d;
+clrscr();
+do
+{
+cout<<“\nMain Menu\n\n”;
+cout<<“1.Insert\n”;
+cout<<“2.Delete\n”;
+cout<<“3.Display\n”;
+cout<<“4.Destroy\n”;
+cout<<“5.Exit\n\n”;
+cout<<“Enter your choice:”;
+cin>>ch;
+switch(ch)
+{
+case 1:clrscr();
+if(front==(rear+1)%QSIZE && rear>=QSIZE-1)
+cout<<“\nQueue is full\n\n”;
+else
+{
+cout<<“\nEnter the element to be inserted:”;
+cin>>in;
+insert(in);
+clrscr();
+}
+break;
+case 2:clrscr();
+d=del();
+if(d!=0)
+cout<<“\nElement deleted=”<<d<<“\n\n”;
+break;
+case 3:clrscr();
+display();
+break;
+case 4:clrscr();
+destroy();
+break;
+case 5:break;
+default:clrscr();
+cout<<“\nEnter an appropriate choice.\n\n”;
+}
+}
+while(ch!=5);
+}

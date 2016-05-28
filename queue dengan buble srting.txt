@@ -1,0 +1,93 @@
+
+
+#include <iostream.h>
+#include <conio.h>
+using namespace std;
+void PUSH();
+void POP();
+void PRINT();
+void BS();
+void IS();
+int pil,n,data[50],x,y,k,Tmp,j,i;
+
+
+void PUSH()
+{
+    data[k]=0;
+    printf("Berapa Data? ");
+    scanf("%d",&n);
+    for(int k=0; k<n; k++)
+    {
+        cout<<"Push :";
+        cin>>data[x];
+        x++;
+    }
+}
+void POP()
+{
+    data[y]=0;
+    y++;
+}
+void PRINT()
+{
+    cout<<endl<<"Print Data:"<<endl;
+    for(int i=y ;i<x;i++)
+        cout<<data[i]<<",";
+    getch();
+}
+void BS()
+{ 
+    for(i = 1; i <n; i++) {
+        for(j = 0; j <n-1; j++) {
+            if(data[j] > data[j + 1]) {
+                Tmp=data[j];
+                data[j] = data[j + 1];
+                data[j + 1] = Tmp;
+            }
+        }
+    }
+    printf("\nSetelah Pengurutan\n");
+    for(i = 0; i <n; i++) {
+    printf("Elemen ke %d : %d\n", i+1,data[i]);
+}
+getch();
+}
+void IS()
+{
+    for(i = 1; i <n; i++) {
+        Tmp = data[i];
+        j = i - 1;
+        while(data[j] >= Tmp && j > 0) {
+            data[j + 1] = data[j];
+            j = j - 1;
+        }
+        if(Tmp >= data[j]) {
+            data[j + 1] = Tmp;
+        } else {
+            data[j + 1] = data[j];
+            data[j] = Tmp;
+        }
+    }
+    printf("\nSetelah Pengurutan\n");
+    for(i = 0; i <n; i++) {
+    printf("Elemen ke %i : %i\n", i + 1, data[i]);
+    }getch();
+}
+int main(){
+    awal:
+    printf("\n===Q U E U E===\n");
+    printf("1. PUSH\n");
+    printf("2. POP\n");
+    printf("3. PRINT DATA\n");
+    printf("\n==S O R T I N G==\n");
+    printf("4. Bubble Sort\n");
+    printf("5. Insertion Sort\n");
+    printf("Masukan pilihan ? \n");
+    scanf("%d",&pil);
+    if(pil==1)PUSH();
+    if(pil==2)POP();
+    if(pil==3)PRINT();
+    if(pil==4)BS();
+    if(pil==5)IS();
+    goto awal;
+}

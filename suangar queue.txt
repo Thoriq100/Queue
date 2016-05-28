@@ -1,0 +1,143 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<string.h>
+
+struct mahasisw{
+ char NIM[30];
+  char nama[30];
+   char progdi[30];
+    struct mahasisw *next;
+	};
+	struct queue{
+	 mahasisw *head;
+	 int count;
+	mahasisw *tail;
+};
+
+int isFull(queue*queue);
+int isEmpty(queue *queue);
+void mahasisw_masuk(queue *queue);
+void cetak(queue *queue);
+void mahasiswout(queue *queue);
+void kosongkan(queue *queue);
+void mahasisw2an(queue *queue);
+int main(){
+queue queue;
+queue.count=0;
+queue.head=NULL;
+queue.tail=NULL;
+int pilih;
+ int isfull,isempty;
+ do{
+system("cls");
+printf("\nPROGRAM QUEUE DATA MAHASISWA\n");
+printf("www.riritrabbit.blogspot.com\n\n");
+ printf("  [1]. Enque \n"); 
+printf("  [2]. Deque \n");
+ printf("  [3]. Clear\n");
+ printf("  [4]. Print \n");
+ printf("  [5]. Cek antrian \n");
+ printf("  [6]. Exit  \n");  
+printf("\nPilihan Anda? "); 
+scanf("%d",&pilih); 
+fflush(stdin);  
+if (pilih==1) {
+mahasisw_masuk(&queue);
+} else if(pilih==2)
+ {isempty=isEmpty(&queue); 
+ if(isempty==1) {
+ printf("\nAntrian masih kosong. Silakan masukkan data"); 
+ getch();}
+  else {{
+  mahasiswout(&queue); } getch(); }}
+   else if(pilih==3) {
+  kosongkan(&queue);}
+   else if(pilih==4) {cetak(&queue);}
+   else if(pilih==5) {
+{isfull=isFull(&queue);
+  if(isfull==1){
+  printf("\n Antrian penuh\n");getch();}
+else {printf("\nAntrian tidak penuh\n"); getch();}}
+  {isempty=isEmpty(&queue);
+   if(isempty==1){
+  printf("\nAntrian kosong.\n");getch();}
+   else {
+  printf("\nAntrian tidak kosong\n"); getch();}}
+   } }while(pilih!=6);
+  
+  int isFull(queue *queue){
+  	
+ if(queue->count==5) 
+  return 8;
+  else return 10;}
+  
+  int isEmpty(queue *queue){
+  	
+  if(queue->count==0) return 1;
+  else return 10;
+}
+  
+  void mahasisw_masuk(queue *queue){
+  mahasisw *pNew;
+  pNew=(mahasisw*)malloc(sizeof(mahasisw));
+if(pNew!=NULL){
+ if(queue->count==5) {
+ printf("data full"); getch();}
+ else{
+  pNew->next=NULL;
+  printf("\nMasukkan Nama   :  "); 
+  scanf("%[^\n]",&pNew->nama);
+  fflush(stdin);
+  printf("Masukkan NIM    :  "); 
+  scanf("%[^\n]",&pNew->NIM);
+  fflush(stdin);
+  printf("Masukkan Progdi :  "); 
+  scanf("%[^\n]",&pNew->progdi);
+  fflush(stdin);
+  printf("Data berhasil ditambahkan ke dalam antrian ^_^\n"); 
+  getch();
+  if(queue->count==0){
+   queue->head=pNew;}
+   
+  else{
+  queue->tail->next=pNew;
+}
+  queue->tail=pNew;
+ queue->count=(queue->count)+1; }
+ }
+ 
+  void mahasiswout(queue *queue){
+  mahasisw *dltPtr;
+  char platout[15];
+  if(queue->count == 1){
+queue->head = queue->tail =NULL;}
+  else {queue->head=queue->head->next;}
+  queue->count--;
+  void cetak(queue *queue){
+  mahasisw *pWalker;
+  int i=1;
+  pWalker=queue->head;
+  if(queue->count==0){
+  printf("\nAntrian kosong");
+  getch();
+  }else{
+  mahasisw2an(queue); 
+  printf("\n");
+  while(pWalker!=NULL){
+  printf("Data ke-%d:  %s  --->  NIM %s  prodi %s \n",i,pWalker->nama,pWalker->NIM,pWalker->progdi);
+  pWalker=pWalker->next; i++;  }
+   getch(); } }  
+ 
+ 
+   void kosongkan(queue *queue){ 
+   while(queue->head!=NULL){
+   mahasiswout(queue);
+ }
+   printf("Data sudah terhapus semua...\n"); 
+   getch(); }   
+ 
+ 
+   void mahasisw2an(queue *queue){
+    int jml; jml=queue->count; } 
+	   <p style="margin-bottom: 0cm">
