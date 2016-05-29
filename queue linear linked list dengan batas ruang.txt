@@ -1,0 +1,153 @@
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+#include <string.h>
+
+using namespace std;
+struct data{
+	int kodebk;
+	string nama;
+	string alamat;
+	data *next;
+};
+data *f,*r,*baru,*bantu,*b1,*b2,*hapus;
+
+
+main(){
+	int pil,ul,x;
+	char y;
+	int p,dar=0;
+	cout<<"Masukan batas ruang :";
+	cin>>p;
+	do{
+		cout<<"1.Enqueue"<<endl;
+		cout<<"2.Dequeue"<<endl;
+		cout<<"3.view"<<endl;
+		cout<<"4.Reset"<<endl;
+		cout<<"Pilih :";
+		cin>>pil;
+		switch(pil){
+			case 1:
+		if (dar<1 && dar<p) {
+						
+			x = 0;
+		}else{
+		x = dar;
+		}
+		if (dar<p){ 
+		do{
+						 	
+				baru=new data;
+				cout<<"Kode buku   : ";
+				cin>>baru->kodebk;
+				cout<<"Nama        : ";
+				cin>>baru->nama;
+				cout<<"alamat      : ";
+				cin>>baru->alamat;
+				baru->next=NULL;
+				system("cls");
+
+		if(f==NULL){
+				f=baru;
+				f->next=NULL;
+			}else{
+			bantu=f;
+			while(bantu->next!=NULL){
+			bantu=bantu->next;
+    		}
+			bantu->next=baru;
+			}
+				            
+			cout<<endl;
+			if (x==p){
+				x++;
+			}else{
+			y=_getch();
+		
+			}
+			dar++;
+			}while(x<p && y=='y');
+			}else{
+						cout<<"antian sudah penuh";
+						cout<<endl;
+					}
+					
+			break;
+				
+			
+				case 2:
+			if (dar<1){
+				cout<<"Antrian kosong";
+			}else{
+			
+                      	
+    		if (f!=NULL){
+    		cout<<"data yang di dequeue"<<endl;
+    		cout<<"===================="<<endl;
+    		cout<<"Kode Buku :"<<f->kodebk<<endl;
+            cout<<"Nama      :"<<f->nama<<endl;
+            cout<<"Alamat    :"<<f->alamat<<endl;
+        
+            system("pause");
+				if(f->next!=NULL){
+				hapus=f;
+				f=f->next;
+				delete hapus;
+				system("cls");
+				}else {
+				f=NULL;
+				}
+			}
+                           
+			}
+		
+			cout<<endl;
+				
+				break;
+				case 3:
+					if(dar<1){
+						cout<<"antrian koosng"<<endl;
+					}else{
+						
+						
+					
+					system("cls");
+					r=f;
+                   bantu=f;
+                  
+                      while (bantu!=NULL){
+                      		cout<<endl;
+                        	cout<<"Kode Buku :"<<bantu->kodebk<<endl;
+                            cout<<"Nama      :"<<bantu->nama<<endl;
+                            cout<<"Alamat    :"<<bantu->alamat;
+                            bantu=bantu->next;
+                
+                            
+                            cout<<endl;
+                            }
+                        }    
+                            break;
+                    case 4:
+                    	
+                    	if(dar!=0){
+                    		x=0;
+                    		dar=0;
+                    		cout<<"data teriset"<<endl;
+						}else{
+							cout<<"antrian kosong";
+						}
+						getch();
+				
+			
+			
+			
+			
+			
+			
+			
+		}
+		
+		
+	}while(pil<5);
+}
+	
